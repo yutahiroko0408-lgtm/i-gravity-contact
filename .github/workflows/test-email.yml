@@ -1,0 +1,23 @@
+name: Workerメール送信テスト
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: i-gravity-contactへテスト送信
+        run: |
+          curl --fail-with-body \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d '{
+              "company":"テスト株式会社",
+              "name":"テスト太郎",
+              "email":"yutahiroko0408@gmail.com",
+              "phone":"09000000000",
+              "category":"お見積り",
+              "message":"i-グラビティ Webフォームのメール送信テストです。"
+            }' \
+            "https://i-gravity-contact.yutahiroko0408.workers.dev"
